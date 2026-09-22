@@ -11,7 +11,7 @@ import SwiftUI
 struct SharekApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            OnboardingScreens()
         }
     }
 }

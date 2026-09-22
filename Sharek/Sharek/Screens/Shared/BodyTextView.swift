@@ -15,7 +15,6 @@ struct BodyTextView: View {
         Text(bodyText)
             .font(.body)
             .foregroundStyle(AppColors.secondaryText)
-            .padding(.horizontal)
             .multilineTextAlignment(.center)
             .lineLimit(2)
     }
