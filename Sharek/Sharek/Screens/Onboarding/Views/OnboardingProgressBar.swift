@@ -15,7 +15,7 @@ struct OnboardingProgressBar: View {
             HStack(spacing: 8) {
                 ForEach(OnboardingViewModel.OnboardingStep.allCases.dropFirst(), id: \.self) { item in
                     Capsule()
-                        .fill(viewModel.step.rawValue >= item.rawValue ? AppColors.brandGreen : AppColors.progressTrack)
+                        .fill(viewModel.step.rawValue >= item.rawValue ? AppColors.primary : AppColors.trackBackground)
                         .frame(height: 4)
                 }
             }

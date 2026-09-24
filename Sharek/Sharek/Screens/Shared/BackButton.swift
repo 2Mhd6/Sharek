@@ -19,7 +19,7 @@ struct BackButton: View {
             }
             .bold()
         }
-        .tint(AppColors.primaryColor)
+        .tint(AppColors.primary)
     }
 }
 

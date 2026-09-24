@@ -13,7 +13,7 @@ struct SetUpProfileScreen: View {
             Text("21")
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(AppColors.appBackgroundColor)
+        .background(AppColors.screenBackground)
     }
 }
 

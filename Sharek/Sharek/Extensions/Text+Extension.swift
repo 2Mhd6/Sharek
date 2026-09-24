@@ -10,7 +10,7 @@ import SwiftUI
 extension Text {
     static func placeholder(text: String) -> Text? {
         var string = AttributedString(text)
-        string.foregroundColor = AppColors.secondaryText
+        string.foregroundColor = AppColors.textMuted
         return Text(string)
     }
 }

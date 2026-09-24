@@ -61,7 +61,7 @@ struct PasswordField: View {
     var labelAndToggleButton: some View {
         HStack {
             Text(label)
-                .foregroundStyle(AppColors.secondaryText)
+                .foregroundStyle(AppColors.textSecondary)
             
             Spacer()
             
@@ -77,7 +77,7 @@ struct PasswordField: View {
         } label: {
             Text(isSecure ? "Show" : "Hide")
                 .bold()
-                .foregroundStyle(AppColors.primaryColor)
+                .foregroundStyle(AppColors.primary)
         }
         
     }

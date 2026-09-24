@@ -22,7 +22,7 @@ struct WelcomeScreen: View {
                     .resizable()
                     .scaledToFit()
                     .frame(width: 120, height: 120)
-                    .shadow(color: AppColors.primaryColor.opacity(0.5), radius: 26, y: 12)
+                    .shadow(color: AppColors.logoShadow, radius: 26, y: 12)
                     .padding(.bottom, 32)
                 
                 TitleTextView(text: "Sharek")
@@ -44,7 +44,7 @@ struct WelcomeScreen: View {
                 print("DEBUG: Tapped")
             }
         }
-        .background(AppColors.appBackgroundColor)
+        .background(AppColors.screenBackground)
     }
     
     
@@ -63,8 +63,8 @@ struct WelcomeScreen: View {
             Image(systemName: "globe")
         }
         .frame(width: 100, height: 40)
-        .foregroundStyle(AppColors.primaryText)
-        .background(AppColors.white)
+        .foregroundStyle(AppColors.textPrimary)
+        .background(AppColors.cardBackground)
         .clipShape(.capsule)
         .padding(.horizontal, 32)
         .padding(.vertical, 16)

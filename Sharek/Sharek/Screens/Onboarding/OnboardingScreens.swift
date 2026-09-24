@@ -22,7 +22,7 @@ struct OnboardingScreens: View {
         }
         .scrollBounceBehavior(.basedOnSize)
         .ignoresSafeArea(.keyboard, edges: .bottom)
-        .background(AppColors.appBackgroundColor.ignoresSafeArea())
+        .background(AppColors.screenBackground.ignoresSafeArea())
     }
     
     @ViewBuilder

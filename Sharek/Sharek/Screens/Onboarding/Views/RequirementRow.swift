@@ -18,7 +18,7 @@ struct RequirementRow: View {
         } icon: {
             Image(systemName: isMet ? "checkmark.circle.fill" : "circle")
                 .imageScale(.small)
-                .foregroundStyle(isMet ? .green : .gray)
+                .foregroundStyle(isMet ? AppColors.primary : AppColors.iconInactive)
         }
         .animation(.easeInOut(duration: 0.2), value: isMet)
     }

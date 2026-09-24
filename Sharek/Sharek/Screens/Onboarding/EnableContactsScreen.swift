@@ -13,7 +13,7 @@ struct EnableContactsScreen: View {
             Text("Contacts")
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(AppColors.appBackgroundColor)
+        .background(AppColors.screenBackground)
     }
 }
 

@@ -15,7 +15,7 @@ struct FocusBorder: ViewModifier {
             .overlay {
                 RoundedRectangle(cornerRadius: 12)
                     .stroke(
-                        isFocused ? AppColors.primaryColor : .gray.opacity(0.3),
+                        isFocused ? AppColors.primary : AppColors.fieldBorder,
                         lineWidth: isFocused ? 2 : 1
                     )
             }

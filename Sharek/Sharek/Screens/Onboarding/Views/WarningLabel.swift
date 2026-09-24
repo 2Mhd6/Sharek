@@ -18,7 +18,7 @@ struct WarningLabel: View {
             Image(systemName: "exclamationmark.circle")
         }
         .font(.callout)
-        .foregroundStyle(.red.opacity(0.6))
+        .foregroundStyle(AppColors.destructive)
     }
 }
 

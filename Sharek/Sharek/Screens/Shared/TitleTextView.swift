@@ -15,7 +15,7 @@ struct TitleTextView: View {
         Text(text)
             .font(.largeTitle)
             .bold()
-            .foregroundStyle(AppColors.primaryText)
+            .foregroundStyle(AppColors.textPrimary)
     }
 }
 

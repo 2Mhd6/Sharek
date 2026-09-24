@@ -13,7 +13,7 @@ struct CaptionTextView: View {
     var body: some View {
         Text(captionText)
             .font(.caption)
-            .foregroundStyle(AppColors.secondaryText)
+            .foregroundStyle(AppColors.textSecondary)
             .multilineTextAlignment(.center)
             .lineLimit(2)
     }

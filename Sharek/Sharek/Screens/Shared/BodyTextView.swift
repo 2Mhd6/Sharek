@@ -14,7 +14,7 @@ struct BodyTextView: View {
     var body: some View {
         Text(bodyText)
             .font(.body)
-            .foregroundStyle(AppColors.secondaryText)
+            .foregroundStyle(AppColors.textSecondary)
             .multilineTextAlignment(.center)
             .lineLimit(2)
     }

@@ -19,7 +19,7 @@ struct EmailField: View {
     var body: some View {
         VStack(alignment: .leading) {
             Text(label)
-                .foregroundStyle(AppColors.secondaryText)
+                .foregroundStyle(AppColors.textSecondary)
 
             TextField("", text: $email, prompt: Text.placeholder(text: "you@example.com"))
                 .focused($focusedField, equals: field)

@@ -11,7 +11,7 @@ struct InputFieldStyle: ViewModifier {
     
     func body(content: Content) -> some View {
         content
-            .foregroundStyle(.black)
+            .foregroundStyle(AppColors.textPrimary)
             .textInputAutocapitalization(.never)
             .autocorrectionDisabled()
             .padding()

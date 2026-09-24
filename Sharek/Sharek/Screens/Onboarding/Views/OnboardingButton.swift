@@ -20,8 +20,8 @@ struct OnboardingButton: View {
                 .font(.title2)
                 .bold()
                 .frame(maxWidth: .infinity, maxHeight: 60)
-                .foregroundStyle(.white)
-                .background( isDisabled ? .gray : AppColors.primaryColor)
+                .foregroundStyle(AppColors.cardBackground)
+                .background(isDisabled ? AppColors.primaryLight : AppColors.primary)
                 .clipShape(RoundedRectangle(cornerRadius: 24))
         }
         .disabled(isDisabled)

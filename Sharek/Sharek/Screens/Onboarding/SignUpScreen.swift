@@ -94,7 +94,7 @@ struct SignUpScreen: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .padding(8)
-        .background(AppColors.appBackgroundColor)
+        .background(AppColors.screenBackground)
         .ignoresSafeArea(.keyboard, edges: .bottom)
         .onTapGesture {
             focusedField = nil

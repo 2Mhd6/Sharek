@@ -10,10 +10,13 @@ import SwiftUI
 struct OTPScreen: View {
     var body: some View {
         VStack {
-            Text("Test")
+            
+//            Circle()
+//                .fill(<#T##content: ShapeStyle##ShapeStyle#>)
+            
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(AppColors.appBackgroundColor)
+        .background(AppColors.screenBackground)
     }
 }
 
