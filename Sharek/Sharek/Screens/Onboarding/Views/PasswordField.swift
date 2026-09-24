@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+// TODO: MED - Need to refactor
+
 struct PasswordField: View {
     let label: String
     let placeholderText: String
@@ -81,42 +83,3 @@ struct PasswordField: View {
     }
 }
 
-struct FocusBorder: ViewModifier {
-    let isFocused: Bool
-    
-    func body(content: Content) -> some View {
-        content
-            .overlay {
-                RoundedRectangle(cornerRadius: 12)
-                    .stroke(
-                        isFocused ? AppColors.primaryColor : .gray.opacity(0.3),
-                        lineWidth: isFocused ? 2 : 1
-                    )
-            }
-    }
-}
-
-struct InputFieldStyle: ViewModifier {
-    
-    func body(content: Content) -> some View {
-        content
-            .foregroundStyle(.black)
-            .textInputAutocapitalization(.never)
-            .autocorrectionDisabled()
-            .padding()
-            .background(.white)
-            .clipShape(RoundedRectangle(cornerRadius: 12))
-            .frame(height: 60)
-    }
-}
-
-extension View {
-    func inputFieldStyle() -> some View {
-        modifier(InputFieldStyle())
-    }
-    
-    func focusBorder(isFocused: Bool) -> some View {
-        modifier(FocusBorder(isFocused: isFocused))
-    }
-    
-}

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct OnboardingButton: View {
     let buttonText: String
+    var isDisabled: Bool = false
     let action: () -> Void
     
     var body: some View {
@@ -20,10 +21,12 @@ struct OnboardingButton: View {
                 .bold()
                 .frame(maxWidth: .infinity, maxHeight: 60)
                 .foregroundStyle(.white)
-                .background(AppColors.primaryColor)
+                .background( isDisabled ? .gray : AppColors.primaryColor)
                 .clipShape(RoundedRectangle(cornerRadius: 24))
-                .padding(.horizontal)
         }
+        .disabled(isDisabled)
+        .padding(.horizontal)
+        .animation(.easeInOut(duration: 0.2), value: isDisabled)
     }
 }
 

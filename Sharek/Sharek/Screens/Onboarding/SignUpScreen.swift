@@ -15,12 +15,7 @@ enum FocusField: Hashable {
 
 struct SignUpScreen: View {
     
-    @State private var email: String = ""
-    @State var isValidEmail = false
-    @State private var isShowEmailValidatorWarning = false
-    
-    @State private var password: String = ""
-    @State private var confirmPassword: String = ""
+    @State private var signUpViewModel = SignUpViewModel()
     @State private var isSecurePassword = true
     
     @FocusState private var focusedField: FocusField?
@@ -38,20 +33,23 @@ struct SignUpScreen: View {
                 Spacer()
             }
             .padding(.bottom, 24)
+            .padding(.top, 24)
             
-            VStack(alignment: .leading, spacing: 8) {
-                TitleTextView(text: "Create your account")
+            TitleTextView(text: "Create your account")
+                .padding(.bottom, 32)
+            
+            VStack(alignment: .leading) {
+                EmailField(label: "Email",
+                           field: .email,
+                           email: $signUpViewModel.email,
+                           focusedField: $focusedField)
+                
+                if signUpViewModel.showsEmailWarning {
+                    WarningLabel(text: "Enter a valid email address.")
+                        .transition(.opacity.combined(with: .move(edge: .top)))
+                }
             }
-            .padding(.bottom, 32)
-            
-            EmailField(label: "Email",
-                       field: .email,
-                       email: $email,
-                       showsInvalidEmailWarning: $isShowEmailValidatorWarning,
-                       focusedField: $focusedField,
-                       onTap: { focusedField = .email },
-                       onSubmit: { focusedField = .password },
-                       onChange: {})
+            .animation(.easeInOut(duration: 0.2), value: signUpViewModel.showsEmailWarning)
             .padding(.bottom, 32)
             
             
@@ -62,32 +60,34 @@ struct SignUpScreen: View {
                               showPasswordToggle: true,
                               field: .password,
                               isSecure: $isSecurePassword,
-                              password: $password,
+                              password: $signUpViewModel.password,
                               focusedField: $focusedField,
                               onTap: { focusedField = .password },
                               onSubmit: { focusedField = .confirmPassword })
+                .submitLabel(.next)
                 
                 PasswordField(label: "Confirm password",
                               placeholderText: "Repeat it",
                               showPasswordToggle: false,
                               field: .confirmPassword,
                               isSecure: $isSecurePassword,
-                              password: $confirmPassword,
+                              password: $signUpViewModel.confirmPassword,
                               focusedField: $focusedField,
                               onTap: { focusedField = .confirmPassword },
                               onSubmit: { focusedField = nil })
+                .submitLabel(.done)
             }
             .padding(.bottom, 24)
             
             VStack (alignment: .leading, spacing: 4){
-                RequirementRow(text: "At least 8 characters", isMet: false)
-                RequirementRow(text: "Contains a number", isMet: true)
-                RequirementRow(text: "Contains upper and lowercase letters", isMet: false)
+                ForEach(signUpViewModel.passwordRequirements) { requirement in
+                    RequirementRow(text: requirement.text, isMet: requirement.isMet)
+                }
             }
             
             Spacer()
             
-            OnboardingButton(buttonText: "Create Account") {
+            OnboardingButton(buttonText: "Create Account", isDisabled: !signUpViewModel.canCreateAccount) {
                 print("DEBUG: Sign Up Screen tapped ")
             }
             
@@ -99,39 +99,6 @@ struct SignUpScreen: View {
         .onTapGesture {
             focusedField = nil
         }
-    }
-    
-    
-    // TODO: Move to VM
-    private func emailValidator(email: String) -> Bool {
-        let email = email.trimmingCharacters(in: .whitespacesAndNewlines)
-        
-        guard !email.isEmpty else {
-            return false
-        }
-        
-        let parts = email.split(
-            separator: "@",
-            omittingEmptySubsequences: false
-        )
-        
-        guard parts.count == 2 else {
-            return false
-        }
-        
-        let localPart = parts[0]
-        let domain = parts[1]
-        
-        guard !localPart.isEmpty,
-              !domain.isEmpty,
-              domain.contains("."),
-              !domain.hasPrefix("."),
-              !domain.hasSuffix("."),
-              !email.contains(" ") else {
-            return false
-        }
-        
-        return true
     }
 }
 

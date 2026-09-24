@@ -8,61 +8,39 @@
 import SwiftUI
 
 struct EmailField: View {
-    
     let label: String
     let field: FocusField
-    
+
     @Binding var email: String
-    @Binding var showsInvalidEmailWarning: Bool
     @FocusState.Binding var focusedField: FocusField?
-    var isFocused: Bool { focusedField == field }
-    
-    var onTap: () -> Void
-    var onSubmit: () -> Void
-    var onChange: () -> Void
-    
-    
+
+    private var isFocused: Bool { focusedField == field }
+
     var body: some View {
         VStack(alignment: .leading) {
             Text(label)
                 .foregroundStyle(AppColors.secondaryText)
-            
-            inputField
-                .onTapGesture {
-                    focusedField = .email
-                }
-            
-            if showsInvalidEmailWarning {
-                WarningLabel(text: "Enter a valid email address.")
-            }
+
+            TextField("", text: $email, prompt: Text.placeholder(text: "you@example.com"))
+                .focused($focusedField, equals: field)
+                .inputFieldStyle()
+                .textContentType(.emailAddress)
+                .keyboardType(.emailAddress)
+                .textInputAutocapitalization(.never)
+                .autocorrectionDisabled()
+                .submitLabel(.next)
+                .focusBorder(isFocused: isFocused)
+                .animation(.easeInOut, value: isFocused)
         }
-    }
-    
-    var inputField: some View {
-        TextField("", text: $email, prompt: Text.placeholder(text: "you@example.com"))
-            .focused($focusedField, equals: .email)
-            .inputFieldStyle()
-            .textContentType(.emailAddress)
-            .onTapGesture(perform: onTap)
-            .onSubmit { onSubmit() }
-            .onChange(of: email) { _, newValue in
-                // TODO: Later when we have VM
-                onChange()
-            }
-            .focusBorder(isFocused: isFocused)
-            .animation(.easeInOut, value: isFocused)
     }
 }
 
 #Preview {
     @Previewable @FocusState var focusedField: FocusField?
+    @Previewable @State var email = ""
     
     EmailField(label: "Email",
-               field: .email,
-               email: .constant("you@you.com"),
-               showsInvalidEmailWarning: .constant(true),
-               focusedField: $focusedField,
-               onTap: {},
-               onSubmit: {},
-               onChange: {})
+                    field: .email,
+                    email: $email,
+                    focusedField: $focusedField)
 }
